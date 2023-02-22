@@ -32,7 +32,7 @@ class MassMailing(Modal, title="Mass mailing"):
         
         response : discord.Interaction = await bot.wait_for(
             'interaction',
-            lambda i:i.type == discord.InteractionType.component and i.user.id == interaction.user.id and i.message.id == msg.id
+            check=lambda i:i.type == discord.InteractionType.component and i.user.id == interaction.user.id and i.message.id == msg.id
         )
 
         match response.data.get('custom_id'):
