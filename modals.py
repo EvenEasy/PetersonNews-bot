@@ -5,12 +5,12 @@ from create_bot import bot
 
 class MassMailing(Modal, title="Mass mailing"):
 
-    NewsTitle = TextInput(label="Title", placeholder="enter news title", max_length=256)
-    NewsDescription = TextInput(style=TextStyle.long,label="Description", placeholder="enter news description", max_length=2048)
+    ProjectTitle = TextInput(label="Title", placeholder="enter news title", max_length=256)
+    ProjectDescription = TextInput(style=TextStyle.long,label="Description", placeholder="enter news description", max_length=2048)
 
-    NewsThumbnail = TextInput(label="Thumbnail link", placeholder="enter news thumbnail link", default="none")
-    NewsImage = TextInput(label="Image link", placeholder="enter news image link", default="none")
-    NewsFooter = TextInput(style=TextStyle.paragraph,label="Footer", placeholder="enter news footer text", default="none", max_length=2048)
+    ProjectThumbnail = TextInput(label="Thumbnail link", placeholder="enter news thumbnail link", default="none")
+    ProjectImage = TextInput(label="Image link", placeholder="enter news image link", default="none")
+    ProjectFooter = TextInput(style=TextStyle.paragraph,label="Footer", placeholder="enter news footer text", default="none", max_length=2048)
 
     async def on_submit(self, interaction: discord.Interaction):
         embed = discord.Embed(
@@ -40,6 +40,7 @@ class MassMailing(Modal, title="Mass mailing"):
                 for member in interaction.guild.members:
                     if len(member.roles) == 1:
                         try:
-                            await member.send(embed=embed)
+                            print(f"Message sent to {member.id}, num roles {len(member.roles)}")
+                            #await member.send(embed=embed)
                         except Exception as E:
                             print(f'Message not sent to {member.id} - {str(E)}')
